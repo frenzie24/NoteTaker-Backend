@@ -16,6 +16,7 @@ fb.post('/', (req, res) => {
     // If all the required properties are present
     if (title && text) {
         // Variable for the object we will save
+        log(['text: ', text], 'white', 'bgBlue');
         const newNote = {
             title,
             text,
