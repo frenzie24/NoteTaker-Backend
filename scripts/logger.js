@@ -42,16 +42,22 @@ function findColor(msg, color) {
     }
 }
 
-
+const log = (line) => {
+   
+    console.log(line);
+}
 //pretty console logs, less typing
 
-const logger = (msg, color) => {
 
-    if (color) {
-        console.log(findColor(msg, color));
-    } else {
-        console.log(msg);
-    }
+
+
+const logger = (msg, color, bgColor) => {
+
+    if (bgColor) msg = findColor(msg, bgColor);
+    if (color) msg = findColor(msg, color);
+    if (Array.isArray(msg)) {
+        log(msg, color);
+    } else log(msg)
 
 }
 module.exports = logger;
