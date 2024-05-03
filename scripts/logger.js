@@ -61,23 +61,15 @@ class Logger {
             console.info(msg);
         } else console.info(msg)
     }
-}
 
-const logger = (msg, color, bgColor) => {
-
-    if (bgColor) msg = findColor(msg, bgColor);
-    if (color) msg = findColor(msg, color);
-    if (Array.isArray(msg)) {
-        console.log(msg, color);
-    } else console.log(msg)
-
-    log = () => {
-       
-        //log(msg);
-    }
-    this.info = (msg) => {
-        console.info(colors.bgWhite(colors.gray(msg)));
+    warn = (msg) =>{
+        msg = colors.bgWhite(colors.red(msg));
+        console.warn(msg);
     }
 
+    error = (msg) => {
+        msg = colors.bgYellow(colors.red(msg));
+    }
 }
+
 module.exports = Logger;
