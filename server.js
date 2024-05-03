@@ -8,8 +8,14 @@ const PORT = 3001;
 app.use(express.static('public'));
 app.get('/', (req, res) => res.send('Navigate to /send or /routes'));
 
+//
 app.get('/notes', (req, res) =>
-  res.sendFile(path.join(__dirname, 'public/send.html'))
+  res.sendFile(path.join(__dirname, 'public/notes.html'))
+);
+
+//back to home with an invalid path!
+app.get('/*', (req, res) =>
+  res.sendFile(path.join(__dirname, 'public/index.html'))
 );
 
 // TODO: Create a route that will serve up the `public/paths.html` page
