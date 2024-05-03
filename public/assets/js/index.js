@@ -43,7 +43,17 @@ const saveNote = (note) =>
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(note)
-  });
+  }).then((res) => res.json())
+  .then((data) => {
+    console.log('Successful POST request:', data);
+
+    // Empty the input fields
+  //  emptyForm();
+    return data;
+  })
+  .catch((error) => {
+    console.error('Error in POST request:', error);
+  });;
 
 const deleteNote = (id) =>
   fetch(`/api/notes/${id}`, {
@@ -77,6 +87,7 @@ const handleNoteSave = () => {
     title: noteTitle.value,
     text: noteText.value
   };
+  console.log(newNote);
   saveNote(newNote).then(() => {
     getAndRenderNotes();
     renderActiveNote();
@@ -104,7 +115,10 @@ const handleNoteDelete = (e) => {
 // Sets the activeNote and displays it
 const handleNoteView = (e) => {
   e.preventDefault();
+  console.log('note view has been clicked');
+  console.log(e.target.parentElement.getAttribute('data-note'));
   activeNote = JSON.parse(e.target.parentElement.getAttribute('data-note'));
+  console.log(activeNote);
   renderActiveNote();
 };
 
