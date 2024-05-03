@@ -1,5 +1,5 @@
 const express = require('express');
-const logger = require('./scripts/logger');
+const logger = new (require('./scripts/logger'));
 const fs = require('fs');
 const path = require('path');
 // var to store data from db
@@ -25,10 +25,13 @@ app.get('/api/notes', (req, res) => {
 app.post('/api/notes', (req, res) => {
 
     // Log that a POST request was received
-    console.info(`${req.method} request received to add a review`);
-    logger({ notesdata: notesData, res: res, req: req }, 'green', 'bgBrightWhite');
+    logger.info(`${req.method} request received to add a review`);
+    logger.log({ notesdata: notesData}, 'green', 'bgBlack');
 
-    console.log('Notes data: \n', notesData);
+// destructuring assignment for items in the req.body
+
+
+
 });
 
 // ## endregion

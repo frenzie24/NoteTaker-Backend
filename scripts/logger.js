@@ -42,22 +42,42 @@ function findColor(msg, color) {
     }
 }
 
-const log = (line) => {
-   
-    console.log(line);
-}
 //pretty console logs, less typing
 
+class Logger {
+    constructor(){}
 
+    log = (msg, color, bgColor) => {
+        if (bgColor) msg = findColor(msg, bgColor);
+        if (color) msg = findColor(msg, color);
+        if (Array.isArray(msg)) {
+            console.log(msg);
+        } else console.log(msg)
+    }
 
+    info = (msg) => {
+       msg = colors.bgGray(colors.white(msg));
+        if (Array.isArray(msg)) {
+            console.info(msg);
+        } else console.info(msg)
+    }
+}
 
 const logger = (msg, color, bgColor) => {
 
     if (bgColor) msg = findColor(msg, bgColor);
     if (color) msg = findColor(msg, color);
     if (Array.isArray(msg)) {
-        log(msg, color);
-    } else log(msg)
+        console.log(msg, color);
+    } else console.log(msg)
+
+    log = () => {
+       
+        //log(msg);
+    }
+    this.info = (msg) => {
+        console.info(colors.bgWhite(colors.gray(msg)));
+    }
 
 }
-module.exports = logger;
+module.exports = Logger;
