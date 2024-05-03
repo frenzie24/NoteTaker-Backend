@@ -20,8 +20,12 @@ app.get('/api/notes', (req, res) => {
     console.log('Notes data: \n', notesData);
 });
 
-
+// adding a note
 app.post('/api/notes', (req, res) => {
+    
+  // Log that a POST request was received
+  console.info(`${req.method} request received to add a review`);
+
     res.json(notesData);
     console.log('Notes data: \n', notesData);
 });
@@ -44,3 +48,28 @@ app.get('/paths', (req, res) => {
 app.listen(PORT, () =>
     console.log(`Example app listening at http://localhost:${PORT}`)
 );
+
+
+const writeNoteToDB(note) {
+    fs.readFile('./db/db.json', 'utf8', (err, data) => {
+        if (err) {
+          console.error(err);
+        } else {
+          // Convert string into JSON object
+          const parsedNotes = JSON.parse(data);
+  
+          // Add a new note
+          parsedNotes.push(note);
+  
+          // Write updated noes back to the file
+          fs.writeFile(
+            './db/db.json',
+            JSON.stringify(parsedNotes, null, 4),
+            (writeErr) =>
+              writeErr
+                ? console.error(writeErr)
+                : console.info('Successfully updated reviews!')
+          );
+        }
+      });
+}
