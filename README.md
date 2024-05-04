@@ -24,7 +24,7 @@ NoteTaker-Backend is a project demonstrating my ability to write a node.js serve
 
 ## INSTALLATION
 ### Steps
-* Ensure you have (Node.js)[https://nodejs.org/en] installed
+* Ensure you have [Node.js](https://nodejs.org/en) installed
 * Clone this repo locally
 * Open a terminal in the root folder of this project
 * In your terminal run:
